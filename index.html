@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script src="map.js"></script>
+    <title>FIT3179 Week 10 Homework</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+        integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="style.css" media="all">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+              <h1>Global YouTube Analysis 2023</h1>
+              <p>Discover valuable insights and expert guidance for aspiring YouTubers looking to launch and grow their channels.</p>
+            </div>
+          </div>
+    
+          <div class="pure-g">
+            <div class="pure-u-1-1">
+              <div id="map" class="vis-container"></div>
+            </div>
+          </div>
+
+          <div class="pure-g">
+
+            <div class="pure-u-4-5">
+              <div id="bubbleplot" class="vis-container"></div>
+            </div>
+
+            <div class="pure-u-1-5">
+              <div class="description description-right">
+                <h1 id="smalltitle">Observations</h1>
+                <p>The bubbleplot visualizes the relationship between the number of video
+                   uploads and the total number of subscribers and video views for YouTube 
+                   channels. As expected, channels with more subscribers tend to have more 
+                   video views. In contrast, the number of uploads and subscribers shows a 
+                   very weak correlation. This suggests that content quality could be more 
+                   critical than sheer quantity. The bubbleplot also highlighted several 
+                   YouTube channels that performs greatly based on number of views and 
+                   subscribers.
+                </p>
+                <p class="extrainfo"> Select from the legend to observe specific category</p>
+              </div>
+            </div>
+
+    </div>
+
+</body>
+
+</html>
+
