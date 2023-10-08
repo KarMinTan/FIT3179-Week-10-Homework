@@ -1,0 +1,102 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "padding":{"left": -90},
+    "width": "container",
+    "height": 400,
+    "title": "Does number of uploads affects subscribers and views?",
+    "data": {
+    "url": "Global YouTube Statistics.csv",
+    "format": {"type": "csv"}
+    },      
+    "transform": [{
+        "filter": "datum.uploads > 0"
+      },
+      {
+        "filter": "datum.category != ''"
+      }
+    ],
+    "encoding": {
+    "x": {
+    "field": "uploads",
+    "type": "quantitative",
+    "title": "Number of Video Uploads",
+    "axis": {"tickCount": 6},
+    "scale": {"type": "log", "domain": [1, 1000000]}
+    },
+    "y": {
+    "field": "subscribers",
+    "type": "quantitative",
+    "title": "Number of Subscribers",
+    "axis": {"tickCount": 2},
+    "scale": {"type": "log", "domain": [10000000, 1000000000]}
+    }
+    },
+    "layer": [
+        {   "selection": {
+            "category_highlight": {
+            "type": "multi",
+            "fields": ["category"],
+            "bind": "legend"
+            }
+            },  
+            "mark":"circle",
+            "encoding": {
+                "size": {
+                    "field": "video views",
+                    "type": "quantitative",
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [40000000000, 80000000000, 120000000000, 150000000000, 200000000000],
+                        "range": [30, 100, 200, 300, 400, 600]
+                        },
+                        "legend": {"format": ".1s"}
+                    },
+            "color": {
+                    "field": "category",
+                    "type": "nominal"      
+                    },
+            "opacity": {
+                    "condition": {"selection": "category_highlight", "value": 0.8},
+                    "value": 0.1
+                    },
+            "tooltip": [
+                    {"field": "category", "type": "nominal", "title": "Category"},
+                    {"field": "uploads", "type": "quantitative", "format": ",", "title": "Video Uploads"},
+                    {"field": "subscribers", "type": "quantitative", "format": ",", "title": "Subscribers"},
+                    {"field": "video views", "type": "quantitative", "format": ",", "title": "Video Views"}
+                    ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "middle",
+                "dx": -13,
+                "dy": -10,
+                "fontSize": 11.5,
+                "fontStyle": "italic"
+                },
+                "encoding": {
+                    "text": {"field": "Youtuber", "type": "nominal"},
+                    "color": {"value": "black"},
+                    "opacity": {
+                        "condition":{
+                            "test": "datum['uploads'] > 500 && datum['subscribers'] > 80000000 && datum['video views'] > 80000000000",
+                            "value": 1
+                        },
+                        "value":0
+                    },
+                    "tooltip": [
+                        {"field": "category", "type": "nominal"},
+                        {"field": "uploads", "type": "quantitative", "format": ","},
+                        {"field": "subscribers", "type": "quantitative", "format": ","},
+                        {"field": "video views", "type": "quantitative", "format": ","}
+                        ]
+                }
+        }
+
+         
+    ]
+}
+    
